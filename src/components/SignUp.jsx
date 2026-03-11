@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
 const SignUp = () =>{
+    // hooks
+    const [username,setUsername]= useState("")
+    const[email,setEmail] = useState("")
+    const[password,setPassword]= useState("")
+    const[phone,setPhone]= useState("")
     return(
         <div className="d-flex justify-content-center row text-center">
             <div className="col-md-6 p-2 mt-4 card shadow">
