@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 const SignIn = () =>{
     const [username,setUsername]=useState("")
     const[password,setPassword]=useState("")
@@ -8,6 +8,8 @@ const SignIn = () =>{
     const[loading,setLoading]=useState("")
     const[success,setSuccess]=useState("")
     const[error,setError]=useState("")
+    // to redirect us from sign in to Home page
+    const navigate= useNavigate()
     const submit = async(e)=>{
         e.preventDefault()
         setLoading("Please wait...")
@@ -17,9 +19,19 @@ const SignIn = () =>{
             data.append('password',password)
             // wait for response from back end
             const response= await axios.post("http://brianswala.alwaysdata.net/api/signin",data)
+            console.log(response)
             // the fields should be empty after submitting data
             setLoading("")
             setSuccess(response.data.message)
+            if (response.data.user){
+                // if user is found, save the user item in the local storage
+                localStorage.setItem("user",JSON.stringify(response.data.user))//stringify changes user object from object to string
+                // redirect to Home component(Get Product)
+                navigate("/")
+            }else{
+                // if user is not found, set an error
+                setError(response.data.message)
+            }
             // clear the form fields
                 setUsername("")
                 setPassword("")
