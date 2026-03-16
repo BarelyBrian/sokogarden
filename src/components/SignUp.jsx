@@ -30,7 +30,7 @@ const SignUp = () =>{
         // after data has been successfully posted, set loading to be empty
         setLoading("")        
         //updating our hook with a success message
-        setSuccess(response.data.success)
+        setSuccess(response.data.success)   
         // clear the form fields
         setUsername("")
         setEmail("")

@@ -11,7 +11,7 @@ const SignIn = () =>{
     // to redirect us from sign in to Home page
     const navigate= useNavigate()
     const submit = async(e)=>{
-        e.preventDefault()
+        e.preventDefault()//prevents the page from refreshing automatically
         setLoading("Please wait...")
         try {
             const data= new FormData()
