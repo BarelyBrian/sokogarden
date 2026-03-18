@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router";
 const GetProduct = () => {
     //hooks
     // products hook
     const [products, setProducts] = useState([])
     const [error, setError] = useState("")
     const [loading, setLoading] = useState("")
+    const navigate=useNavigate()
     const img_url = "https://malombeswala.alwaysdata.net/static/images/"
     // functionn to get all the products
     const getproducts = async () => {
@@ -39,7 +41,7 @@ const GetProduct = () => {
                             <h5 className="mt-2">{product.product_name}</h5>
                             <p className="text-muted">{product.product_description}</p>
                             <b className="text-warning">KES {product.product_cost}</b>
-                            <button className="btn btn-dark w-100">Purchase now</button>
+                            <button className="btn btn-dark w-100" onClick={()=>navigate("/mpesapayment",{state: {product}})}>Purchase now</button>
                         </div>
                     </div>
                 </div>
